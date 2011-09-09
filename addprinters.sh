@@ -5,6 +5,15 @@ LPADMIN=`which lpadmin`
 if [ -z $LPADMIN ]; then
 	echo "Could not find the lpadmin program."
 	echo "Either you have not installed CUPS, or lpadmin is not on your PATH"
+	exit
+fi
+
+FOOMATIC=`which foomatic-ppdfile`
+
+if [ -z $FOOMATIC ]; then
+	echo "Could not find foomatic-ppdfile"
+	echo "Please install foomatic-db and foomatic-db-engine before continuing."
+	exit
 fi
 
 DRIVER="foomatic:HP-LaserJet_9050-Postscript.ppd"
