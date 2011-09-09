@@ -15,20 +15,17 @@ also be installed by default for your distribution. The foomatic database and
 database engine packages are commonly named "foomatic-db" and 
 "foomatic-db-engine" respectively.
 
-To add a single printer, run `sudo ./addprinter.sh name location`. Here `name`
-is the name of the printer as given by the CUIT website. Location is a
-human-readable description of the location. For example
+To add all the printers, run the command
 
-	sudo ./addprinter.sh butler300a Butler
+	sudo ./addprinters.sh
 
-will add one of the butler printers. To add all the printers, run the command
+This will most likely take a long time. If you want to add a specific printer
+supply an argument to the program. For instance
 
-	sudo ./addall.sh
+	sudo ./addprinters.sh butler
 
-This will most likely take a long time. For convenience, you may supply an 
-argument to addall.sh to only add printers in a certain location. For instance
+will add only the printers in butler library, whereas
 
-	sudo ./addall.sh butler
+	sudo ./addprinters.sh butler301a
 
-will add only the printers in Butler Library.
-
+will add a specific printer in butler.
