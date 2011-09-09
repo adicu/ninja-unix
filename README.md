@@ -29,3 +29,6 @@ will add only the printers in butler library, whereas
 	sudo ./addprinters.sh butler301a
 
 will add a specific printer in butler.
+
+There is also a delprinters.sh script which is used in the same way, but 
+deletes printers instead of adding them. 
