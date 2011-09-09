@@ -1,5 +1,19 @@
 #!/bin/sh
 
+if [ ! -f printers.conf ]; then
+	URL=https://raw.github.com/adicu/ninja-unix/master/printers.conf
+	echo "No printers.conf. Attempting to download."
+	if [ -z `which wget` ]; then
+		if [ -z `which curl` ]; then
+			echo "Please install either wget or curl"
+		else
+			curl $URL > printers.conf
+		fi
+	else
+		wget $URL
+	fi
+fi
+
 LPADMIN=`which lpadmin`
 
 if [ -z $LPADMIN ]; then
