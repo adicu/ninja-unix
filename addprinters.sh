@@ -22,18 +22,10 @@ if [ -z $LPADMIN ]; then
 	exit
 fi
 
-FOOMATIC=`which foomatic-ppdfile`
-
-if [ -z $FOOMATIC ]; then
-	echo "Could not find foomatic-ppdfile"
-	echo "Please install foomatic-db and foomatic-db-engine before continuing."
-	exit
-fi
-
-DRIVER="foomatic:HP-LaserJet_9050-Postscript.ppd"
+DRIVER="./hp-laserjet-9050.ppd"
 
 add_ninja(){
-	$LPADMIN -p $1 -E -v lpd://$2/public -m $DRIVER -L $3
+	$LPADMIN -p $1 -E -v lpd://$2/public -P $DRIVER -L $3
 }
 
 read_config(){
