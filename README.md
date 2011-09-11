@@ -9,12 +9,6 @@ other "User-Friendly" Unices, this should be installed by default. This package
 is generally named "cups" in most distribution package repositories. If you
 install CUPS manually, make sure the cups daemon is started and running.
 
-Install the Foomatic database and database engine. Foomatic is a database 
-containing information about many common printer models. These packages may 
-also be installed by default for your distribution. The foomatic database and 
-database engine packages are commonly named "foomatic-db" and 
-"foomatic-db-engine" respectively.
-
 To add all the printers, run the command
 
 	sudo ./addprinters.sh
