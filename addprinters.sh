@@ -40,7 +40,7 @@ add_ninja(){
 		DRIVER="-m foomatic:HP-LaserJet_9050-Postscript.ppd"
 	else
 		if [ $OS == 'Darwin' ]; then
-			DRIVER="-P foomatic:HP-LaserJet_9050-Postscript.ppd"
+			DRIVER="-P hp-laserjet-9050.ppd"
 		fi
 	fi
 	$LPADMIN -p $1 -E -v lpd://$2/public $DRIVER -L $3
