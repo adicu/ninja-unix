@@ -1,0 +1,61 @@
+If you are using Linux, like me, you may have been frustrated by the lack of 
+documentation for adding printers from Columbia's Ninja printing system to your 
+computer. Well, this post will show you an easy-peasy way to set up printing on 
+your Linux system. As an added bonus, this method should work on Mac OS X 
+as well!
+
+Downloading:
+
+Get the script from https://raw.github.com/adicu/ninja-unix/master/addprinters.sh. 
+
+Adding Printers:
+
+Running the script like so,
+
+    sudo ./addprinters.sh 
+
+without any arguments will add all the printers in the NINJA system to your 
+computer. This will take a long time, so you may only want to add a subset. 
+You can supply an argument to the script to restrict the printers installed. 
+For instance.
+
+    ./addprinters.sh butler
+
+will add all printers in Butler library.
+
+   ./addprinters.sh butler301a
+
+adds a specific printer. 
+
+Deleting printers:
+
+To delete a specific printer, run the command
+
+    lpadmin -x printername
+
+where printername is the name of the printer. Alternatively, you can use the 
+CUPS web interface by navigating to http://localhost:631 in your webbrowser 
+and removing the printer from there.
+
+If you need to delete many printers at once. You can use the delprinters.sh
+script, available at https://raw.github.com/adicu/ninja-unix/master/addprinters.sh. 
+The usage is the same as the addprinters.sh script.
+ 
+
+Printing from the Command Line:
+
+You may be thinking: "I'm a Linux user dammit, how do I print from the command line".
+
+This is easy enough, just do
+
+    lpr -d printername filename
+
+Where printername is the name of the NINJA printer and filename is the name of a PostScript, PDF, or Image File.
+
+Possible problems:
+
+If you see the error message "Could not find the lpadmin program", you do not have the Common Unix Printing System (CUPS) installed. In most distributions, CUPS can be found in a package called, well "cups".
+
+If you see the message "Could not find foomatic-ppdfile", you do not have the foomatic database installed. Foomatic is a database containing the driver information for many different printer types. In most distros, foomatic is generally composed of two packages "foomatic-db" and "foomatic-db-engine". 
+
+If you see "lpadmin: could not read ppd file", something may have gone wrong during installation, delete the printer and try again.
