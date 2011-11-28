@@ -29,7 +29,7 @@ for line in lst:
     towrite.append(line[0] + " " + line[1] + " " + line[3] + "\n")
 
 #writes it into the correct format in newprinter.yaml file
-filep = open("newprinters.conf","w")
+filep = open("printers.conf","w")
 filep.writelines(towrite)
 
 
