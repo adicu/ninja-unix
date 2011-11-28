@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function download {
 	URL=$1
@@ -7,7 +7,7 @@ function download {
 		if [ -z `which curl` ]; then
 			echo "Please install either wget or curl"
 		else
-			curl $URL > $FILE 
+			curl $URL > $FILE
 		fi
 	else
 		wget $URL
@@ -17,7 +17,7 @@ function download {
 if [ ! -f printers.conf ]; then
 	URL=https://raw.github.com/adicu/ninja-unix/master/printers.conf
 	echo "No printers.conf. Attempting to download."
-	download $URL	
+	download $URL
 fi
 
 if [ ! -f hp-laserjet-9050.ppd ]; then
