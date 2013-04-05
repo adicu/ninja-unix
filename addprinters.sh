@@ -1,16 +1,19 @@
 #!/bin/bash
 
+function check_exists {
+	which $1 &> /dev/null
+}
+
 function download {
 	URL=$1
 	FILE=`basename $1`
-	if [ -z `which wget` ]; then
-		if [ -z `which curl` ]; then
-			echo "Please install either wget or curl"
-		else
-			curl $URL > $FILE
-		fi
+	
+	if check_exists wget; then
+		wget "$URL"
+	elif check_exists curl; then
+		curl "$URL" -o "$FILE"
 	else
-		wget $URL
+		echo "Please install either wget or curl"
 	fi
 }
 
@@ -20,8 +23,10 @@ if [ ! -f printers.conf ]; then
 	download $URL
 fi
 
-if [ ! -f hp-laserjet-9050.ppd ]; then
-	URL=https://raw.github.com/adicu/ninja-unix/master/hp-laserjet-9050.ppd
+PPD="hp-laserjet-9050-$(uname).ppd"
+
+if [ ! -f $PPD ]; then
+	URL=https://raw.github.com/adicu/ninja-unix/master/$PPD
 	echo "No ppd file. Attempting to download."
 	download $URL
 fi
@@ -35,15 +40,7 @@ if [ -z $LPADMIN ]; then
 fi
 
 add_ninja(){
-	OS=`uname`
-	if [ $OS == 'Linux' ]; then
-		DRIVER="-m foomatic:HP-LaserJet_9050-Postscript.ppd"
-	else
-		if [ $OS == 'Darwin' ]; then
-			DRIVER="-P hp-laserjet-9050.ppd"
-		fi
-	fi
-	$LPADMIN -p $1 -E -v lpd://$2/public $DRIVER -L $3
+	$LPADMIN -p $1 -E -v lpd://$2/public -P $PPD -L $3
 }
 
 read_config(){
