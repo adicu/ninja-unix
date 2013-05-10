@@ -26,3 +26,15 @@ will add a specific printer in butler.
 
 There is also a delprinters.sh script which is used in the same way, but 
 deletes printers instead of adding them. 
+
+## Mac Executables
+
+[Add and delete printer apps located here.](https://www.dropbox.com/s/t2s0thy1yvryvaq/ColumbiaPrinters.zip)
+
+## Missing Printers
+
+If you think any printers are missing, run the scraper script to add all available ninja printers
+
+    python scraper.py
+
+This will update the printers.conf file that the add printers script uses.
