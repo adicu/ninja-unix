@@ -47,9 +47,12 @@ read_config(){
 	while read name address location
 	do
 		echo "Adding $name"
-		add_ninja $name $address $location
+		add_ninja $name $uni@$address $location
 	done
 }
+
+echo "What is your UNI?"
+read uni
 
 if [ -z $1 ]; then
 	read_config < printers.conf
