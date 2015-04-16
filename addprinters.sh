@@ -23,14 +23,6 @@ if [ ! -f printers.conf ]; then
 	download $URL
 fi
 
-PPD="hp-laserjet-9050-$(uname).ppd"
-
-if [ ! -f $PPD ]; then
-	URL=https://raw.github.com/adicu/ninja-unix/master/$PPD
-	echo "No ppd file. Attempting to download."
-	download $URL
-fi
-
 LPADMIN=`which lpadmin`
 
 if [ -z $LPADMIN ]; then
@@ -40,7 +32,7 @@ if [ -z $LPADMIN ]; then
 fi
 
 add_ninja(){
-	$LPADMIN -p $1 -E -v lpd://$2/public -P $PPD -L $3
+	$LPADMIN -p $1 -E -v lpd://$2/public -m drv:///sample.drv/generic.ppd -L $3
 }
 
 read_config(){
